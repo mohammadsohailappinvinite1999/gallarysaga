@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import "./App.css";
+import Header from "./components/Header";
+import ImageGrid from "./components/ImageGrid/ImageGrid";
+import Counter from "./Counter";
 
 function App() {
+  const state = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "HELLO" });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Counter
+        value={state}
+        onIncrement={() => {
+          dispatch({ type: "INCREMENT" });
+        }}
+        onDecrement={() => {
+          dispatch({ type: "DECREMENT" });
+        }}
+        onIncrementAsync={() => {
+          dispatch({ type: "INCREMENT_ASYNC" });
+        }}
+      /> */}
+
+      <Header />
+      <ImageGrid />
     </div>
   );
 }
